@@ -1,0 +1,39 @@
+.skills {
+  border-top: 1px solid var(--line);
+}
+.skills__title {
+  margin-top: 1.5rem;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+}
+
+.skills__grid {
+  margin-top: clamp(2.5rem, 7vh, 5rem);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+.skills__col h3.skills__group {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.skills__col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.skills__col li {
+  font-size: 1.05rem;
+  color: var(--ink);
+  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+}
+.skills__col li:hover {
+  transform: translateX(6px);
+  color: var(--ink-dim);
+}

@@ -1,0 +1,150 @@
+/* ============================================================
+   DESIGN SYSTEM — Monochrome / Editorial / DevOps
+   ============================================================ */
+
+:root {
+  /* Core palette — near-black canvas, warm off-white ink */
+  --ink: #f4f2ec;          /* primary text / foreground */
+  --ink-dim: #9a978f;      /* secondary text */
+  --ink-faint: #56544f;    /* tertiary / lines */
+  --bg: #0a0a0a;           /* page background */
+  --bg-soft: #111110;      /* raised surfaces */
+  --paper: #e9e7e2;        /* light canvas (russellnumo-style hero) */
+  --paper-ink: #0c0c0c;    /* ink on paper */
+  --line: rgba(244, 242, 236, 0.12);
+  --line-strong: rgba(244, 242, 236, 0.28);
+  --success: #3fb950;      /* Jenkins-style pipeline success green */
+
+  /* Typography */
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-cond: "Anton", "Arial Narrow", sans-serif; /* giant condensed display */
+
+  /* Rhythm */
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  --section-pad: clamp(6rem, 14vh, 12rem);
+  --maxw: 1440px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.76, 0, 0.24, 1);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* subtle film grain over everything for that premium texture */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* hide scrollbar */
+* {
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Shared utilities ---------- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-pad);
+}
+
+/* Big display type */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+}
+
+/* Accessibility: honor reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

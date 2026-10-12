@@ -1,0 +1,238 @@
+.nav {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 200;
+  pointer-events: none;
+}
+
+/* dark ink — legible on the light hero and the light menu overlay */
+.nav__bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(1.25rem, 2.5vw, 1.9rem) var(--gutter);
+  color: var(--paper-ink);
+}
+
+/* ---- wordmark ---- */
+.nav__wordmark {
+  pointer-events: auto;
+  display: inline-flex;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding-right: 0.05em;
+}
+.nav__wordmark .char {
+  display: inline-block;
+  white-space: pre;
+}
+
+/* ---- right tools ---- */
+.nav__tools {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+}
+.nav__tool {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: inherit;
+}
+.nav__tool-label {
+  transition: opacity 0.3s var(--ease);
+}
+.nav__tool:hover .nav__tool-label {
+  opacity: 0.55;
+}
+
+/* equalizer */
+.nav__eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+.nav__eq i {
+  width: 2px;
+  height: 4px;
+  background: currentColor;
+  display: block;
+}
+.nav__sound.is-on .nav__eq i {
+  animation: eq 0.9s ease-in-out infinite;
+}
+.nav__sound.is-on .nav__eq i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.nav__sound.is-on .nav__eq i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.nav__sound.is-on .nav__eq i:nth-child(4) {
+  animation-delay: 0.45s;
+}
+@keyframes eq {
+  0%,
+  100% {
+    height: 4px;
+  }
+  50% {
+    height: 14px;
+  }
+}
+
+/* menu button */
+.nav__menu-icon {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 34px;
+}
+.nav__menu-line {
+  height: 2px;
+  width: 100%;
+  background: currentColor;
+  transform-origin: center;
+  transition: transform 0.55s var(--ease-inout), opacity 0.4s var(--ease);
+}
+/* three lines morph into an X: top + bottom cross, middle fades */
+.nav.is-open .nav__menu-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.nav.is-open .nav__menu-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav.is-open .nav__menu-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ---- full-screen overlay (auwa-style: light, centered, pale) ---- */
+.nav__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--paper);
+  color: var(--paper-ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.75rem, 5vh, 3.25rem);
+  padding: var(--gutter);
+  will-change: clip-path;
+}
+
+.nav__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.05rem, 0.4vh, 0.35rem);
+}
+.nav__link {
+  display: block;
+}
+.nav__link-text {
+  /* the viewport — sized by the real (static) pale row beneath it */
+  position: relative;
+  display: block;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 8vw, 6rem);
+  line-height: 1.14;
+  letter-spacing: -0.005em;
+  text-align: center;
+}
+/* the pale row is laid out normally — it's what gives the box its size */
+.nav__link-text .row--pale {
+  display: block;
+  color: rgba(12, 12, 12, 0.28);
+  transform: translateY(0);
+  transition: transform 0.5s var(--ease);
+}
+/* the bold row is stacked exactly on top of it, pushed one line below */
+.nav__link-text .row--bold {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  color: var(--paper-ink);
+  transform: translateY(0);
+  transition: transform 0.5s var(--ease);
+}
+/* on hover both rows shift up by one row-height: pale exits the top,
+   bold arrives into the exact same spot the pale just vacated */
+.nav__link:hover .nav__link-text .row--pale,
+.nav__link:hover .nav__link-text .row--bold {
+  transform: translateY(-100%);
+}
+
+.nav__overlay-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.1rem, 3vh, 1.75rem);
+}
+.nav__divider {
+  display: block;
+  width: 46px;
+  height: 1px;
+  background: rgba(12, 12, 12, 0.25);
+  transform-origin: center;
+}
+.nav__overlay-socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(12, 12, 12, 0.5);
+}
+.nav__overlay-socials a {
+  transition: color 0.3s var(--ease);
+}
+.nav__overlay-socials a:hover {
+  color: var(--paper-ink);
+}
+
+/* touch devices have no hover — the pale/bold swap would never trigger,
+   leaving menu links stuck dim and hard to read, so just show full ink */
+@media (hover: none) {
+  .nav__link-text .row--bold {
+    transform: translateY(-100%);
+  }
+}
+
+@media (max-width: 560px) {
+  .nav__wordmark {
+    letter-spacing: 0.22em;
+  }
+  .nav__sound .nav__tool-label {
+    display: none;
+  }
+  .nav__link-text {
+    font-size: clamp(2.1rem, 9vw, 2.8rem);
+  }
+}
+
+@media (max-width: 380px) {
+  .nav__wordmark {
+    font-size: clamp(1.1rem, 4.2vw, 1.4rem);
+    letter-spacing: 0.14em;
+  }
+}
