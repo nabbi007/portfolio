@@ -35,6 +35,8 @@ export default function Reveal({
       scrollTrigger: {
         trigger: node,
         start: "top 82%",
+        // replay every time this scrolls into view, not just once
+        toggleActions: "play reverse play reverse",
       },
     });
 

@@ -5,8 +5,8 @@
 import portraitImg from "./assets/illi-pic.jpg";
 
 export const site = {
-  name: "Iliasu Abubakar",
-  initials: "IA",
+  name: "Illiasu Nabbi",
+  initials: "IN",
   role: "DevOps & Platform Engineer",
   // shown in hero, one word each line looks best
   headline: ["I build", "& ship", "reliable systems."],
@@ -47,26 +47,26 @@ export const deploySteps = [
 
 export const about = {
   eyebrow: "About",
-  // Big statement — keep it punchy.
-  statement:
-    "I write secure backend code, automate infrastructure as code, and streamline deployment pipelines, bridging the gap between software development and IT operations.",
-  // the huge poster-style statement — segments alternate plain / emphasized
-  // so the JSX can style them differently without parsing a string.
-  statementParts: [
-    { text: "I bridge the gap between system administration, secure backend development, and scalable cloud infrastructure. Simple philosophy: " },
-    { text: "automate everything, secure every layer,", em: true },
-    { text: " and " },
-    { text: "get things done.", em: true },
-  ],
-  paragraphs: [
-    "I'm a software and DevOps engineer with 3 years of experience across backend development and platform engineering. I care about fast feedback loops, zero-downtime releases, and infrastructure you can read like a book.",
-    "Whether it's migrating environments onto spot instances to cut cost, building AI-powered tools that debug Kubernetes clusters, or hardening servers to CIS benchmarks, I turn operational chaos into calm, measurable systems.",
-  ],
-  stats: [
-    { value: "3 yrs", label: "Experience" },
-    { value: "51%", label: "Compute cost cut" },
-    { value: "5", label: "AWS/K8s/MS certs" },
-    { value: "4", label: "Services supported" },
+  // terminal-style intro, typed out line by line on scroll into view
+  terminal: {
+    promptUser: "nabbi@illiasu",
+    promptPath: "~",
+    whoamiCmd: "whoami",
+    whoamiOutput: "Illiasu Nabbi",
+    scriptCmd: "./aboutme.sh",
+    lines: [
+      "You can call me Illiasu.",
+      "I bridge the gap between system administration, secure backend development, and scalable cloud infrastructure. Simple philosophy: automate everything, secure every layer, and get things done.",
+    ],
+    // clickable follow-up command in the terminal, revealing certifications
+    certsCmd: "cat certifications.txt",
+  },
+  certifications: [
+    { name: "Kubernetes and Cloud Native Associate (KCNA)", year: "2026" },
+    { name: "AWS Certified Developer, Associate", year: "2026" },
+    { name: "Microsoft Certified: SQL AI Developer Associate", year: "2026" },
+    { name: "AWS Certified Solutions Architect, Associate", year: "2025" },
+    { name: "AWS Certified Cloud Practitioner", year: "2024" },
   ],
 };
 

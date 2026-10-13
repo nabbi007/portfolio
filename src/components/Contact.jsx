@@ -16,7 +16,11 @@ export default function Contact() {
         duration: 1.1,
         ease: "power4.out",
         stagger: 0.08,
-        scrollTrigger: { trigger: ".contact__big", start: "top 85%" },
+        scrollTrigger: {
+          trigger: ".contact__big",
+          start: "top 85%",
+          toggleActions: "play reverse play reverse",
+        },
       });
     }, root);
     return () => ctx.revert();
